@@ -28,6 +28,7 @@ class _SignInPageState extends State<SignInPage> {
   final formKey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  late bool _passwordVisible = false;
 
   @override
   void dispose() {
@@ -87,8 +88,29 @@ class _SignInPageState extends State<SignInPage> {
                       const SizedBox(
                         height: 20.0,
                       ),
-                      AuthField(
-                          hintText: 'Password', controller: passwordController),
+                      TextFormField(
+                        controller: passwordController,
+                        decoration: InputDecoration(
+                          hintText: 'Password',
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                              color: AppPallete.tealGreenColor,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _passwordVisible = !_passwordVisible;
+                              });
+                            },
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Password is missing';
+                          }
+                        },
+                        obscureText: _passwordVisible,
+                      ),
                       const SizedBox(
                         height: 10.0,
                       ),
