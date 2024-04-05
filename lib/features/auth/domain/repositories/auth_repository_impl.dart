@@ -29,7 +29,7 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, bool>> userLogout() async{
+  Future<Either<Failure, bool>> userLogout() async {
     try {
       final result = await authRemoteDataSource.userLogout();
       return right(result);
@@ -61,7 +61,7 @@ class AuthRepositoryImpl implements AuthRepository {
           print('User data is not available!');
           return left(Failure('User data is not available!'));
         } else {
-          print('email ${session?.user.email}');
+          print('email ${session.user.email}');
           return right(UserModel(
               id: session.user.id, email: session.user.email ?? '', name: ''));
         }

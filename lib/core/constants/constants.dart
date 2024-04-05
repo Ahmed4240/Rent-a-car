@@ -1,6 +1,3 @@
-import '../../features/home/domain/models/car_item.dart';
-import '../drawables/drawable.dart';
-
 class Constants {
   static const List<String> topics = [
     'Family cars',
